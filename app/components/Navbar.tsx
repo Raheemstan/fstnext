@@ -23,7 +23,7 @@ const Navbar = async () => {
                                 "use server";
                                 await signOut( {redirectTo: "/"});
                             }} className="flex items-center gap-2">
-                                <button type="submit"> Logout</button>
+                                <button type="submit" className=""> Logout</button>
                             </form>
 
                             <Link href={`/user/${session?.id}`}>
