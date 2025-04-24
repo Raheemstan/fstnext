@@ -3,12 +3,14 @@ import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { Author, Startup } from "@/sanity/types";
 
+export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
     const {
         _createdAt,
         views,
-        author: { id: authorId, name },
+        author,
         title,
         category,
         _id,
@@ -33,15 +35,15 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
             </Link>
 
             <div className="flex justify-between items-center mt-2">
-                <Link href={`/user/${authorId}`}>
+                <Link href={`/user/${author?._id}`} className="flex items-center gap-2">
                     <p className="text-sm font-medium text-muted-foreground hover:underline line-clamp-1">
-                        {name}
+                        {author?.name}
                     </p>
                 </Link>
-                <Link href={`/user/${authorId}`}>
+                <Link href={`/user/${author?._id}`} className="flex items-center gap-2">
                     <Image
                         src="https://placehold.co/48x48"
-                        alt={`${name}'s avatar`}
+                        alt={`${author?.name}'s avatar`}
                         width={36}
                         height={36}
                         className="rounded-full"
@@ -61,7 +63,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
             </Link>
 
             <div className="flex justify-between items-center mt-4">
-                <Link href={`/?query=${category.toLowerCase()}`}>
+                <Link href={`/?query=${category?.toLowerCase()}`}>
                     <p className="text-sm font-medium text-primary hover:underline">
                         {category}
                     </p>

@@ -1,3 +1,5 @@
+# YC Combination
+
 This is a [Next.js](https://nextjs.org) project that I am using to learn web development. It was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
