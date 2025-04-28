@@ -108,15 +108,15 @@
 
   /* navbar */
   .avatar {
-    @apply p-0 focus-visible:ring-0 bg-none rounded-full drop-shadow-md ;
+    @apply p-0 focus-visible:ring-0 bg-none rounded-full drop-shadow-md;
   }
 
   .dropdown-menu {
-    @apply w-56 border-[5px] border-black bg-white p-5 rounded-2xl ;
+    @apply w-56 border-[5px] border-black bg-white p-5 rounded-2xl;
   }
 
   .login {
-    @apply border-[5px] py-4 border-black bg-white text-black relative shadow  font-medium hover:shadow-none transition-all duration-500 ;
+    @apply border-[5px] py-4 border-black bg-white text-black relative shadow font-medium hover:shadow-none transition-all duration-500;
   }
 
   /* searchform */
@@ -129,7 +129,7 @@
   }
 
   .search-btn {
-    @apply size-[50px] rounded-full bg-black flex justify-center items-center ;
+    @apply size-[50px] rounded-full bg-black flex justify-center items-center;
   }
 
   /* startupcard */
@@ -145,12 +145,19 @@
     @apply font-normal text-[16px] line-clamp-2 my-3 text-black break-all;
   }
 
+  .tag {
+    @apply bg-secondary px-6 py-3 font-bold rounded-sm uppercase relative;
+  }
+
+  .tag-tri {
+    @apply before:content-[''] before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent after:content-[''] after:absolute after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-black after:border-l-[10px] after:border-l-transparent;
+}
   .startup-card_img {
     @apply w-full h-[164px] rounded-[10px] object-cover;
   }
 
   .startup-card_btn {
-    @apply rounded-full bg-black font-medium text-[16px] text-white px-5 py-3 ;
+    @apply rounded-full bg-black font-medium text-[16px] text-white px-5 py-3;
   }
 
   .startup-card_skeleton {
@@ -183,7 +190,7 @@
   }
 
   .startup-form_btn {
-    @apply bg-primary border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] ;
+    @apply bg-primary border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px];
   }
 
   /* view */
