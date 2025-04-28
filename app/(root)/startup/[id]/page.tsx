@@ -5,6 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import markdownit from "markdown-it";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const md = markdownit();
+
 export const experimental_ppr = true;
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -14,6 +20,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
 
     if (!post) return notFound();
+
+    const parsedPitch = md.render(post?.pitch || "");
 
     return (
         <>
@@ -27,9 +35,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <section className="section_container">
                 <img src={post?.image} alt="thumbnail" className="w-full h-auto rounded-xl" />
                 <div className="space-y-5 mt-10 max-w-4xl mx-auto">
-                    <div className="flex-between gap-5">
-                        <Link href={`/user/${post?.author?._id}`} className="flex gap-2 items-center mb-3">
-                            
+                    <div className="flex justify-between items-center gap-5 flex-wrap">
+                        <Link href={`/user/${post?.author?._id}`} className="flex gap-2 items-center">
                             <Image
                                 src={post?.author?.image}
                                 alt="avatar"
@@ -41,13 +48,22 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                                 <p className="text-20-medium">{post?.author?.name}</p>
                                 <p className="text-16-medium !text-black-300">@{post?.author?.username}</p>
                             </div>
-                            </Link>
-                            <p className="category-tag">{post?.category}</p>
+                        </Link>
+                        <p className="category-tag whitespace-nowrap">{post?.category}</p>
                     </div>
                     <h3 className="text-30-bold">Pitch</h3>
-                    
+                    {parsedPitch ? (
+                        <article className="prose max-w-4xl break-all"
+                            dangerouslySetInnerHTML={{ __html: parsedPitch }} />
+                    ) : (
+                        <p className="no-result"> No details provided</p>
+                    )}
                 </div>
-                </section>
+                <hr className="divider" />
+
+
+                <Suspense fallback={<Skeleton className="view_skeleton" />}></Suspense>
+            </section>
         </>
     )
 }
