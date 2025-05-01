@@ -4,6 +4,7 @@ import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/queries";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import View from "@/components/View";
 
 import markdownit from "markdown-it";
 import { Suspense } from "react";
@@ -62,7 +63,9 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                 <hr className="divider" />
 
 
-                <Suspense fallback={<Skeleton className="view_skeleton" />}></Suspense>
+                <Suspense fallback={<Skeleton className="view_skeleton" />}>
+                <View id={id}/>
+                </Suspense>
             </section>
         </>
     )
